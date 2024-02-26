@@ -1,0 +1,19 @@
+<aura:component controller="MyDynamicPickerController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="targetObjects" type="List" />
+    <aura:attribute name="selectedTarget" type="String" default="" />
+    <aura:attribute name="currentSelectedRecordId" type="String" default="" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:card title="RecordPicker Dynamic Target" iconName="standard:search">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small">
+                <lightning:combobox name="targetSelector" label="Select a target sObject" value="{!v.selectedTarget}" options="{!v.targetObjects}" onchange="{!c.handleTargetSelection}" />
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small">
+                <lightning:recordEditForm recordId="{!v.currentSelectedRecordId}" objectApiName="{!v.selectedTarget}">
+                    <lightning:inputField fieldName="Name" />
+                </lightning:recordEditForm>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
+</aura:component>
