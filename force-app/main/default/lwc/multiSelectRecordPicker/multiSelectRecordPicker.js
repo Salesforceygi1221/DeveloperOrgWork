@@ -3,7 +3,7 @@ import getRecordName from '@salesforce/apex/MultiSelectLWCController.getRecordNa
 
 export default class MultiSelectRecordPicker extends LightningElement {
     // Public properties (can be set from parent components)
-    @api isMultiSelect = true; // Determines whether multi-select is enabled
+    @api isMultiSelect = !(false); // Determines whether multi-select is enabled
     @api objectName = 'Contact'; // Salesforce object name (e.g., 'Account', 'Contact')
     @api label = 'Contacts'; // Label for the component
     @api iconName = 'standard:contact'; // Icon name for display
