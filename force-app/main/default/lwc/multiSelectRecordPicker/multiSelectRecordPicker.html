@@ -1,0 +1,16 @@
+<template>
+    <!-- A container for the record picker and selected items -->
+    <div class="slds-theme_default slds-card slds-var-p-around_small">
+        <!-- Record picker component -->
+        <lightning-record-picker lwc:ref="picker" label={label} placeholder="Search Records..."
+            object-api-name={objectName} onchange={handleChange}>
+        </lightning-record-picker>
+
+        <!-- Pill container for displaying selected items (if multi-select) -->
+        <lightning-pill-container 
+            if:true={isMultiSelect} 
+            items={selectedItems} 
+            onitemremove={handleItemRemove}>
+        </lightning-pill-container>
+    </div>
+</template>
