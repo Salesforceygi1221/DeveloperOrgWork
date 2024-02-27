@@ -1,29 +1,26 @@
 <template>
-    <lightning-card
-    title="Lightning Record Picker Dynamic"
-    class="slds-card__body_inner"
-    icon-name="standard:search">
-        <div class="slds-form-element">
-        <label class="slds-form-element__label">Select a record</label>
-        <div class="slds-form-element__control slds-combobox-group">
-        <template if:true={showTargetSelector}>
-
-        <!-- Target selector -->
-
-        <lightning-combobox
-        data-id="targetSelector"
-        label="Select a target sObject"
-        variant="label-hidden"
-        options={targetObjects}
-        value={selectedTarget}
-        onchange={handleTargetSelection}
-        class="slds-combobox_object-switcher slds-combobox-addon_start">
-        </lightning-combobox>
+    <div>
+        <!-- Loading spinner shown when isLoading is true -->
+        <template if:true={isLoading}>
+            <div class="spinner-container">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
         </template>
+<!-- Lightning card for the dynamic record picker -->
+<lightning-card title="Lightning Record Picker Dynamic" class="slds-card__body_inner" icon-name="standard:search">
+    <div class="slds-form-element">
+        <label class="slds-form-element__label"><b>Select a record</b></label>
+        <div class="slds-form-element__control slds-combobox-group">
+            <template if:true={showTargetSelector}> 
+                <lightning-combobox data-id="targetSelector" label="Select sObject" variant="label-hidden" placeholder="Select object" options={targetObjects} value={selectedTarget} onchange={handleTargetSelection} class="slds-combobox_object-switcher slds-combobox-addon_start">
+                </lightning-combobox>
+            </template>
 
-<lightning-record-picker object-api-name={selectedTarget} placeholder="Search..." label="Select a record" variant="label-hidden" display-info={displayInfo} matching-info={matchingInfo} onchange={handleRecordSelect} filter={filter} class="slds-size_full slds-combobox-addon_end">
-</lightning-record-picker>
-</div>
-</div>
+            <!-- Record picker for the selected target object -->
+            <lightning-record-picker object-api-name={selectedTarget} placeholder="Search..." label="Select a record" variant="label-hidden" display-info={displayInfo} matching-info={matchingInfo} onchange={handleRecordSelect} class="slds-size_full slds-combobox-addon_end">
+            </lightning-record-picker>
+        </div>
+    </div>
 </lightning-card>
+</div>
 </template>
