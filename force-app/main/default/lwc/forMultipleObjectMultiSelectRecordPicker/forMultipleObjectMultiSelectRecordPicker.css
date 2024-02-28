@@ -1,0 +1,23 @@
+/* Container with relative positioning */
+
+.loading-container {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Spinner container with absolute positioning and centered content */
+
+.spinner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Flex display for center alignment of content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.8);
+}

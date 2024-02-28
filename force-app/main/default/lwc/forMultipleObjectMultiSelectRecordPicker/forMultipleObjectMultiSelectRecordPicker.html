@@ -1,0 +1,28 @@
+<template>
+    <div>
+        <!-- Loading spinner shown when isLoading is true -->
+        <template if:true={isLoading}>
+            <div class="spinner-container">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+<!-- Lightning card for the dynamic record picker -->
+<lightning-card title="MultiSelect record for Multiple Object" class="slds-card__body_inner" icon-name="standard:search">
+    <label class="slds-form-element__label"><b>Select a record</b></label>
+    <div>
+        <div class="slds-form-element__control slds-combobox-group">
+            <template if:true={showTargetSelector}> 
+                <lightning-combobox data-id="targetSelector" label="Select sObject" variant="label-hidden" placeholder="Select object" options={targetObjects} value={selectedTarget} onchange={handleTargetSelection} class="slds-combobox_object-switcher slds-combobox-addon_start">
+                </lightning-combobox>
+            </template>
+
+            <!-- Record picker for the selected target object -->
+            <lightning-record-picker lwc:ref="picker" object-api-name={selectedTarget} placeholder="Search..." label="Select a record" variant="label-hidden" display-info={displayInfo} matching-info={matchingInfo} onchange={handleRecordSelect} class="slds-size_full slds-combobox-addon_end">
+            </lightning-record-picker>
+        </div>
+        <lightning-pill-container if:true={isMultiSelect} items={selectedItems} onitemremove={handleItemRemove}>
+        </lightning-pill-container>
+    </div>
+</lightning-card>
+</div>
+</template>
